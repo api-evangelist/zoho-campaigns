@@ -1,0 +1,91 @@
+name: Zoho Campaigns Plans and Pricing
+description: Pricing plans for Zoho Campaigns email marketing platform
+url: https://www.zoho.com/campaigns/pricing.html
+plans:
+  - name: Forever Free
+    description: Free plan for small lists with basic email marketing features
+    price: 0
+    currency: USD
+    billing_period: monthly
+    contacts_limit: 2000
+    emails_per_month: 6000
+    users: 5
+    features:
+      - Signup forms
+      - Limited templates
+      - Compliance check
+      - Basic reports
+    credit_card_required: false
+
+  - name: Standard
+    description: Standard plan for growing businesses with unlimited emails
+    price_monthly: 4.00
+    price_annual: 3.00
+    currency: USD
+    billing_period: monthly
+    contacts_limit: 100000
+    emails_per_month: unlimited
+    users: 10
+    features:
+      - All ready-to-use templates
+      - Basic segmentation
+      - Basic workflows
+      - Email attachments
+      - Campaign reports
+      - A/B testing
+    addons:
+      - SMS marketing
+      - Dedicated IP
+
+  - name: Professional
+    description: Professional plan with advanced automation and segmentation
+    price_monthly: 6.00
+    price_annual: 4.50
+    currency: USD
+    billing_period: monthly
+    contacts_limit: 100000
+    emails_per_month: unlimited
+    users: 20
+    features:
+      - Advanced segmentation
+      - Contact scoring and tags
+      - Advanced workflows
+      - Cart abandonment tracking
+      - Pop-up forms
+      - Dynamic content
+      - Email polls
+      - Batch sending
+      - Timezone-aware sends
+      - Optimal send time
+    addons:
+      - SMS marketing
+      - Dedicated IP
+
+  - name: Agency
+    description: Plan for marketing agencies managing multiple clients
+    price_annual: 583.00
+    currency: USD
+    billing_period: annual
+    features:
+      - Multi-client management
+      - All Professional features
+      - Agency dashboard
+
+  - name: Pay-as-you-go
+    description: Credit-based prepaid plan for Email API usage
+    model: prepaid_credits
+    features:
+      - Purchase credits upfront
+      - Each API call consumes credits
+      - Real-time credit tracking
+      - No monthly commitment
+
+trial:
+  duration_days: 14
+  credit_card_required: false
+
+notes:
+  - Annual subscriptions offer 25% discount over monthly billing
+  - Pay-as-you-go credits available for Email API access
+  - Dedicated IP available as add-on
+  - SMS marketing available as add-on with credit-based pricing

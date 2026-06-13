@@ -1,0 +1,67 @@
+name: Zoho Campaigns FinOps
+description: Financial operations and cost management guidance for Zoho Campaigns API usage
+url: https://www.zoho.com/campaigns/pricing.html
+cost_model:
+  type: subscription_plus_credits
+  description: Subscription plans billed by contact count, with optional prepaid credits for Email API
+
+billing_dimensions:
+  - name: Contacts
+    description: Number of contacts stored in your mailing lists
+    impact: Determines which plan tier is required
+    tiers:
+      - up_to: 2000
+        plan: Forever Free
+      - up_to: 500
+        plan: Standard (entry)
+        note: Standard plan starts at 500 contacts with unlimited emails
+      - up_to: 100000
+        plan: Standard or Professional
+
+  - name: Email Sends
+    description: Number of emails sent per month
+    impact: Free plan limited to 6,000/month; paid plans have unlimited sends
+
+  - name: API Credits (Email API)
+    description: Prepaid credits consumed per API call for Email API access
+    model: Pay-as-you-go credits purchased upfront
+
+cost_saving_tips:
+  - Choose annual billing to save approximately 25% over monthly rates
+  - Use the Forever Free plan for up to 2,000 contacts and 6,000 emails/month at no cost
+  - Monitor contact counts to stay within plan limits and avoid surprise upgrades
+  - Use batch sending on Professional plan to optimize deliverability without extra cost
+  - Purchase Email API credits in bulk to reduce per-call cost
+
+optimization_strategies:
+  - Regularly clean your mailing lists to remove unsubscribed or bounced contacts, keeping counts below tier thresholds
+  - Use segmentation to target smaller relevant audiences rather than full-list blasts
+  - Leverage timezone-aware sends (Professional) to improve open rates and reduce re-send costs
+  - Monitor API usage to stay within the 500-calls-per-5-minutes rate limit and avoid lockout overhead
+
+add_on_costs:
+  - name: SMS Marketing
+    description: Credit-based SMS campaigns as an add-on to any paid plan
+    model: credit-based
+
+  - name: Dedicated IP
+    description: Dedicated IP address for email deliverability, available on paid plans
+    model: add-on fee
+
+payment_methods:
+  - Visa
+  - MasterCard
+  - American Express
+  - PayPal
+  - Bank transfer
+
+currencies_supported:
+  - USD
+  - INR
+  - EUR
+  - GBP
+
+notes:
+  - 14-day free trial available on paid plans, no credit card required
+  - Zoho Campaigns pricing is contact-based; email sends are unlimited on paid plans
+  - Agency plan at approximately USD 583/year for multi-client management

@@ -1,0 +1,73 @@
+aid: zoho-campaigns
+name: Zoho Campaigns
+description: >-
+  Zoho Campaigns is an email marketing platform with a REST API for managing
+  mailing lists, campaigns, subscribers, email templates, A/B tests, and
+  campaign analytics. The API (v1.1) uses OAuth 2.0 authentication and supports
+  JSON and XML response formats, enabling developers to create, schedule, send,
+  and report on email campaigns programmatically.
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/zoho-campaigns/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - Email Marketing
+  - Campaigns
+  - Mailing Lists
+  - Subscribers
+  - Email Templates
+  - A/B Testing
+  - Campaign Analytics
+  - Marketing Automation
+apis:
+  - name: Zoho Campaigns API
+    description: >-
+      REST API for managing email campaigns, mailing lists, subscribers,
+      templates, and analytics in Zoho Campaigns. Supports campaign creation,
+      scheduling, sending, cloning, and reporting as well as contact and list
+      management.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://www.zoho.com/campaigns/help/developers/
+    baseURL: https://campaigns.zoho.com/api/v1.1/
+    tags:
+      - Email Marketing
+      - Campaigns
+      - Mailing Lists
+      - Subscribers
+      - Email Templates
+      - A/B Testing
+      - Campaign Analytics
+    properties:
+      - type: Documentation
+        url: https://www.zoho.com/campaigns/help/developers/
+      - type: Authentication
+        url: https://www.zoho.com/campaigns/help/developers/access-token.html
+      - type: OpenAPI
+        url: https://campaigns.zoho.com/api/v1.1/
+common:
+  - type: Website
+    url: https://www.zoho.com/campaigns/
+  - type: Documentation
+    url: https://www.zoho.com/campaigns/help/developers/
+  - type: GitHubOrg
+    url: https://github.com/zoho
+  - type: LinkedIn
+    url: https://www.linkedin.com/showcase/zoho-campaigns/
+  - type: Blog
+    url: https://www.zoho.com/blog/campaigns/
+  - type: Pricing
+    url: https://www.zoho.com/campaigns/pricing.html
+  - type: StatusPage
+    url: https://status.zoho.com/
+  - type: X
+    url: https://x.com/zohocampaigns
+  - type: Plans
+    url: plans/zoho-campaigns-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/zoho-campaigns-rate-limits.yml
+  - type: FinOps
+    url: finops/zoho-campaigns-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

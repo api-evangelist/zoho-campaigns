@@ -1,0 +1,27 @@
+name: Zoho Campaigns API Rate Limits
+description: Rate limiting policies for the Zoho Campaigns REST API v1.1
+url: https://www.zoho.com/campaigns/help/developers/
+limits:
+  - name: Standard API Rate Limit
+    description: Maximum API calls allowed within a 5-minute window
+    requests: 500
+    window: 5 minutes
+    scope: per account
+
+  - name: Lockout Period
+    description: If the rate limit is exceeded, API access is suspended for 30 minutes
+    lockout_duration: 30 minutes
+    note: Other Zoho APIs remain accessible unless their own lock period has been reached
+
+token_limits:
+  - name: Access Token Expiry
+    description: OAuth 2.0 access tokens expire after one hour
+    duration: 1 hour
+    refresh: Use refresh token to obtain a new access token
+
+notes:
+  - Rate limits apply per account across all API keys
+  - Exceeding the limit triggers a 30-minute cooldown for Zoho Campaigns API
+  - Other Zoho product APIs are not affected by Zoho Campaigns rate limit lockout
+  - Rate limits may vary based on plan tier; consult official docs for current values
+  - API documentation reference: https://www.zoho.com/campaigns/help/developers/
