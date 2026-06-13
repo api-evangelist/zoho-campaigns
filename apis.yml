@@ -45,6 +45,8 @@ apis:
         url: https://www.zoho.com/campaigns/help/developers/access-token.html
       - type: OpenAPI
         url: https://campaigns.zoho.com/api/v1.1/
+      - type: JSONLd
+        url: json-ld/zoho-campaigns.json
 common:
   - type: Website
     url: https://www.zoho.com/campaigns/
@@ -68,6 +70,12 @@ common:
     url: rate-limits/zoho-campaigns-rate-limits.yml
   - type: FinOps
     url: finops/zoho-campaigns-finops.yml
+  - type: Blog
+    url: https://www.zoho.com/blog/campaigns/
+  - type: BlogPosts
+    url: blogs/blogs.json
+  - type: JSONLd
+    url: json-ld/zoho-campaigns.json
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

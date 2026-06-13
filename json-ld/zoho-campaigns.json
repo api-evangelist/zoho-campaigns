@@ -1,0 +1,62 @@
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://www.zoho.com/campaigns/",
+  "name": "Zoho Campaigns",
+  "description": "Zoho Campaigns is an email marketing platform with a REST API for managing mailing lists, campaigns, subscribers, email templates, A/B tests, and campaign analytics. The API (v1.1) uses OAuth 2.0 authentication and supports JSON and XML response formats, enabling developers to create, schedule, send, and report on email campaigns programmatically.",
+  "url": "https://www.zoho.com/campaigns/",
+  "applicationCategory": "Email Marketing",
+  "operatingSystem": "Web",
+  "offers": {
+    "@type": "Offer",
+    "url": "https://www.zoho.com/campaigns/pricing.html"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Zoho Corporation",
+    "url": "https://www.zoho.com/",
+    "sameAs": [
+      "https://github.com/zoho",
+      "https://www.linkedin.com/showcase/zoho-campaigns/",
+      "https://x.com/zohocampaigns"
+    ]
+  },
+  "softwareHelp": {
+    "@type": "CreativeWork",
+    "url": "https://www.zoho.com/campaigns/help/developers/",
+    "name": "Zoho Campaigns Developer Documentation"
+  },
+  "featureList": [
+    "Email Campaign Management",
+    "Mailing List Management",
+    "Subscriber Management",
+    "Email Template Management",
+    "A/B Testing",
+    "Campaign Analytics",
+    "Campaign Scheduling",
+    "Campaign Cloning",
+    "OAuth 2.0 Authentication",
+    "JSON and XML Response Formats"
+  ],
+  "termsOfService": "https://www.zoho.com/campaigns/help/developers/",
+  "statusPage": "https://status.zoho.com/",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "url": "https://www.zoho.com/campaigns/help/developers/"
+  },
+  "potentialAction": {
+    "@type": "ConsumeAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://campaigns.zoho.com/api/v1.1/",
+      "httpMethod": ["GET", "POST", "PUT", "DELETE"],
+      "actionPlatform": "https://schema.org/DigitalPlatform"
+    }
+  },
+  "sameAs": [
+    "https://www.zoho.com/campaigns/",
+    "https://github.com/zoho",
+    "https://x.com/zohocampaigns",
+    "https://www.linkedin.com/showcase/zoho-campaigns/"
+  ]
+}

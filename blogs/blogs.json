@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "source": "https://www.zoho.com/blog/campaigns/",
+    "fetched": "2026-06-13",
+    "provider": "zoho-campaigns"
+  },
+  "posts": [
+    {
+      "title": "10 simple ecommerce email ideas to improve ROI in 2023 (Part 2)",
+      "url": "https://www.zoho.com/blog/campaigns/ecommerce-email-tip-2023-part-2.html",
+      "date": "2023-06-05",
+      "updated": "2024-09-11",
+      "author": "Susmit",
+      "summary": "Five behavioral email marketing strategies for ecommerce, including post-purchase and abandoned cart messages, back-in-stock and price-drop notifications, pop-up forms for data collection, ecommerce-based workflow automation, and analyzing store reports to improve campaign performance."
+    },
+    {
+      "title": "10 simple ecommerce email ideas to improve ROI in 2023 (Part 1)",
+      "url": "https://www.zoho.com/blog/campaigns/ecommerce-email-best-practices-2023.html",
+      "date": "2023-05-12",
+      "updated": "2024-09-11",
+      "author": "Susmit",
+      "summary": "Foundational email marketing strategies for online retailers covering customer segmentation, personalization with merge tags and dynamic content, mobile-optimized template design, welcome sequences for new subscribers, and targeted campaigns with loyalty rewards and referral programs."
+    },
+    {
+      "title": "Why hatching a successful Easter email marketing strategy is important for your brand",
+      "url": "https://www.zoho.com/blog/campaigns/easter-email-marketing.html",
+      "date": "2023-03-13",
+      "updated": "2023-06-12",
+      "author": "Annet Mathews",
+      "summary": "Four key reasons to implement Easter email marketing: boosting engagement through themed templates and personalization, leveraging holiday promotions via coupon campaigns, building brand awareness with user-generated content, and capitalizing on personalization with dynamic content and AI-backed product recommendations."
+    },
+    {
+      "title": "Why Zoho Campaigns is the best alternative to Mailchimp?",
+      "url": "https://www.zoho.com/blog/campaigns/Mailchimp-Vs-Zoho-Campaigns.html",
+      "date": "2023-02-16",
+      "updated": "2023-02-24",
+      "author": "vipasha.s",
+      "summary": "Comparison of Zoho Campaigns versus Mailchimp highlighting lower pricing (approximately $196 monthly savings for 10,000 contacts), unlimited email campaigns, free multi-channel customer support, integrated SMS gateway, robust CRM integrations, and dedicated onboarding assistance."
+    },
+    {
+      "title": "Expert Diaries Season 4: Email marketing community is getting stronger",
+      "url": "https://www.zoho.com/blog/campaigns/expert-diaries-season-4.html",
+      "date": "2022-12-30",
+      "author": null,
+      "summary": "Industry insights and community perspectives on the growing email marketing ecosystem, featuring expert voices on trends and best practices."
+    }
+  ]
+}
