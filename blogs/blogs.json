@@ -44,5 +44,21 @@
       "author": null,
       "summary": "Industry insights and community perspectives on the growing email marketing ecosystem, featuring expert voices on trends and best practices."
     }
-  ]
+  ],
+  "repo": "zoho-campaigns",
+  "feeds": [
+    {
+      "source": "https://www.linkedin.com/showcase/zoho-campaigns/",
+      "error": "HTTPError"
+    },
+    {
+      "source": "https://www.zoho.com/blog/campaigns/",
+      "feed_url": "https://www.zoho.com/blog/feed",
+      "title": "",
+      "saved": 6,
+      "method": "discovered"
+    }
+  ],
+  "post_count": 6,
+  "fetched": "2026-06-14T20:42:17Z"
 }
