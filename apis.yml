@@ -6,7 +6,7 @@ description: >-
   campaign analytics. The API (v1.1) uses OAuth 2.0 authentication and supports
   JSON and XML response formats, enabling developers to create, schedule, send,
   and report on email campaigns programmatically.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/zoho-campaigns/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -27,7 +27,7 @@ apis:
       templates, and analytics in Zoho Campaigns. Supports campaign creation,
       scheduling, sending, cloning, and reporting as well as contact and list
       management.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://www.zoho.com/campaigns/help/developers/
     baseURL: https://campaigns.zoho.com/api/v1.1/
     tags:
