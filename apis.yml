@@ -45,7 +45,7 @@ apis:
         url: https://www.zoho.com/campaigns/help/developers/access-token.html
       - type: OpenAPI
         url: https://campaigns.zoho.com/api/v1.1/
-      - type: JSONLd
+      - type: JSONLD
         url: json-ld/zoho-campaigns.json
 common:
   - type: Website
@@ -74,7 +74,7 @@ common:
     url: https://www.zoho.com/blog/campaigns/
   - type: BlogPosts
     url: blogs/blogs.json
-  - type: JSONLd
+  - type: JSONLD
     url: json-ld/zoho-campaigns.json
 maintainers:
   - FN: Kin Lane
