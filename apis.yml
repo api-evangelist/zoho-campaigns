@@ -48,6 +48,10 @@ apis:
       - type: JSONLD
         url: json-ld/zoho-campaigns.json
 common:
+  - type: VulnerabilityDisclosure
+    url: security/zoho-campaigns-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/zoho-campaigns-domain-security.yml
   - type: Website
     url: https://www.zoho.com/campaigns/
   - type: Documentation
