@@ -1,11 +1,18 @@
 aid: zoho-campaigns
 name: Zoho Campaigns
 description: >-
-  Zoho Campaigns is an email marketing platform with a REST API for managing
-  mailing lists, campaigns, subscribers, email templates, A/B tests, and
-  campaign analytics. The API (v1.1) uses OAuth 2.0 authentication and supports
-  JSON and XML response formats, enabling developers to create, schedule, send,
-  and report on email campaigns programmatically.
+  Zoho Campaigns is Zoho Corporation's email marketing platform, and it exposes
+  two distinct public API surfaces. The Zoho Campaigns API v1.1 is an
+  RPC-over-HTTP interface for campaigns, mailing lists, contacts, segments,
+  custom fields, merge tags, coupons, topics and automation workflows,
+  authenticated with OAuth 2.0 against Zoho Accounts and returning JSON or XML
+  selected with a resfmt query parameter. The Zoho Campaigns Email API v2 is a
+  separate resource-oriented JSON REST API for transactional and bulk sending —
+  transmissions, stored templates, recipient lists, suppression lists, sending
+  and tracking domains, users, licensing, delivery reports and event webhooks —
+  authenticated with an API key. Zoho publishes no OpenAPI for either surface;
+  the machine-readable contract it does publish is a first-party Postman
+  collection for the Email API.
 accessModel:
   pricing: freemium
   onboarding: unknown
@@ -21,7 +28,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/zoho-campaigns.png
 url: https://raw.githubusercontent.com/api-evangelist/zoho-campaigns/refs/heads/main/apis.yml
 created: '2026-06-13'
-modified: '2026-06-13'
+modified: '2026-08-13'
 specificationVersion: '0.19'
 tags:
   - Email Marketing
@@ -32,6 +39,8 @@ tags:
   - A/B Testing
   - Campaign Analytics
   - Marketing Automation
+  - Transactional Email
+  - Webhooks
 apis:
   - name: Zoho Campaigns API
     description: >-
@@ -55,43 +64,128 @@ apis:
         url: https://www.zoho.com/campaigns/help/developers/
       - type: Authentication
         url: https://www.zoho.com/campaigns/help/developers/access-token.html
-      - type: OpenAPI
-        url: https://campaigns.zoho.com/api/v1.1/
+      - type: APIReference
+        url: https://www.zoho.com/campaigns/help/developers/campaign-management.html
       - type: JSONLD
         url: json-ld/zoho-campaigns.json
+  - name: Zoho Campaigns Email API
+    description: >-
+      Resource-oriented JSON REST API for sending email at volume from Zoho
+      Campaigns. Covers transmissions (create, schedule, reschedule, cancel,
+      fetch), stored HTML/text templates, recipient lists, the suppression list,
+      sending and bounce domains, tracking domains, webhook subscriptions,
+      delivery and event reports (open, click, bounce, spam), user management
+      and license details. Version 2 authenticates with an API key sent as
+      "Authorization: Zoho-zapikey"; the still-published version 1 uses the same
+      resource tree with Zoho OAuth 2.0 tokens.
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+    humanURL: https://www.zoho.com/campaigns/help/emailapi/overview.html
+    baseURL: https://campaigns.zoho.com/emailapi/v2/
+    tags:
+      - Transactional Email
+      - Email Delivery
+      - Templates
+      - Suppression Lists
+      - Sending Domains
+      - Webhooks
+      - Deliverability Reports
+    properties:
+      - type: Documentation
+        url: https://www.zoho.com/campaigns/help/emailapi/overview.html
+      - type: Authentication
+        url: https://www.zoho.com/campaigns/help/emailapi/authentication.html
+      - type: PostmanCollection
+        url: postman/zoho-campaigns-email-api-collection.json
+      - type: Webhooks
+        url: asyncapi/zoho-campaigns-email-api-webhooks.yml
+      - type: ErrorCatalog
+        url: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
 common:
-  - type: VulnerabilityDisclosure
-    url: security/zoho-campaigns-vulnerability-disclosure.yml
-  - type: DomainSecurity
-    url: security/zoho-campaigns-domain-security.yml
   - type: Website
     url: https://www.zoho.com/campaigns/
+  - type: DeveloperPortal
+    url: https://www.zoho.com/campaigns/help/developers/
   - type: Documentation
     url: https://www.zoho.com/campaigns/help/developers/
-  - type: GitHubOrg
+  - type: APIReference
+    url: https://www.zoho.com/campaigns/help/developers/campaign-management.html
+  - type: Quickstart
+    url: https://www.zoho.com/campaigns/help/developers/access-token.html
+  - type: Support
+    url: https://help.zoho.com/portal/en/community/zoho-campaigns
+  - type: GitHubOrganization
     url: https://github.com/zoho
   - type: LinkedIn
     url: https://www.linkedin.com/showcase/zoho-campaigns/
-  - type: Blog
-    url: https://www.zoho.com/blog/campaigns/
-  - type: Pricing
-    url: https://www.zoho.com/campaigns/pricing.html
-  - type: StatusPage
-    url: https://status.zoho.com/
   - type: X
     url: https://x.com/zohocampaigns
+  - type: Blog
+    url: https://www.zoho.com/blog/campaigns/
+  - type: BlogPosts
+    url: blogs/blogs.json
+  - type: Pricing
+    url: https://www.zoho.com/campaigns/pricing.html
+  - type: SignUp
+    url: https://www.zoho.com/campaigns/signup.html
+  - type: TermsOfService
+    url: https://www.zoho.com/campaigns/terms.html
+  - type: PrivacyPolicy
+    url: https://www.zoho.com/privacy.html
+  - type: StatusPage
+    url: https://status.zoho.com/
+  - type: ChangeLog
+    url: https://www.zoho.com/campaigns/whats-new.html
+  - type: Postman
+    url: https://www.postman.com/zoho-emailapi-b1/zoho-campaigns-email-api/collection/lhb7bxz/email-api-collection
+  - type: Security
+    url: https://bugbounty.zohocorp.com/bb/info
+  - type: Compliance
+    url: https://www.zoho.com/compliance.html
   - type: Plans
     url: plans/zoho-campaigns-plans-pricing.yml
   - type: RateLimits
     url: rate-limits/zoho-campaigns-rate-limits.yml
   - type: FinOps
     url: finops/zoho-campaigns-finops.yml
-  - type: Blog
-    url: https://www.zoho.com/blog/campaigns/
-  - type: BlogPosts
-    url: blogs/blogs.json
+  - type: Authentication
+    url: authentication/zoho-campaigns-authentication.yml
+  - type: OAuthScopes
+    url: scopes/zoho-campaigns-scopes.yml
+  - type: ErrorCatalog
+    url: errors/zoho-campaigns-error-codes.yml
+  - type: Webhooks
+    url: asyncapi/zoho-campaigns-email-api-webhooks.yml
+  - type: Conventions
+    url: conventions/zoho-campaigns-conventions.yml
+  - type: Lifecycle
+    url: lifecycle/zoho-campaigns-lifecycle.yml
+  - type: ChangeLog
+    url: changelog/zoho-campaigns-changelog.yml
+  - type: Conformance
+    url: conformance/zoho-campaigns-conformance.yml
+  - type: DataModel
+    url: data-model/zoho-campaigns-data-model.yml
+  - type: Packages
+    url: packages/zoho-campaigns-packages.yml
+  - type: LLMsTxt
+    url: llms/zoho-campaigns-llms.txt
+  - type: WellKnown
+    url: well-known/zoho-campaigns-well-known.yml
+  - type: SecurityTxt
+    url: well-known/zoho-campaigns-security.txt
+  - type: VulnerabilityDisclosure
+    url: security/zoho-campaigns-vulnerability-disclosure.yml
+  - type: TrustCenter
+    url: security/zoho-campaigns-trust-center.yml
+  - type: DomainSecurity
+    url: security/zoho-campaigns-domain-security.yml
   - type: JSONLD
     url: json-ld/zoho-campaigns.json
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 17
+  pass: local-v1
