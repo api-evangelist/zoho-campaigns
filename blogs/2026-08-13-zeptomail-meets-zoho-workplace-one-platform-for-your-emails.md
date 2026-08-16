@@ -1,0 +1,8 @@
+---
+title: "ZeptoMail meets Zoho Workplace: One platform for your emails, with free credits to get started"
+url: "https://www.zoho.com/blog/workplace/connecting-zeptomail-to-zoho-workplace.html"
+date: "2026-08-13"
+author: "Prashanth"
+feed_url: "https://www.zoho.com/blog/feed"
+---
+Businesses don’t just send emails. They rely on them.Every day, your team is busy sending proposals, chatting with clients, scheduling meetings, and bouncing ideas back and forth. Meanwhile, behind the scenes, your applications, websites, or ERPs are quietly pulling heavy duty firing off password resets, OTPs, order confirmations, invoices, and...
