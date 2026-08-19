@@ -1,0 +1,96 @@
+generated: '2026-08-13'
+method: probed
+source: live GET of /.well-known/* on every apis.yml host
+name: Zoho Campaigns well-known discovery surface
+description: >-
+  Probe of the RFC 8615 /.well-known/ discovery surface for every host named in
+  apis.yml — the API host (campaigns.zoho.com), the marketing/docs host
+  (www.zoho.com) and the Zoho Accounts OAuth host (accounts.zoho.com) that the
+  Zoho Campaigns API v1.1 authorization flow depends on.
+hosts:
+  - host: https://campaigns.zoho.com
+    role: api
+    note: >-
+      Every /.well-known/* path returns HTTP 200 with the Zoho Campaigns
+      single-page-app HTML shell (Content-Type text/html), not a document.
+      Treated as a MISS on every path — a 200 carrying an SPA shell is not a
+      served well-known document.
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        content_type: text/html
+        document: false
+        note: SPA catch-all HTML shell
+      - path: /.well-known/openid-configuration
+        status: 200
+        content_type: text/html
+        document: false
+        note: SPA catch-all HTML shell
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        content_type: text/html
+        document: false
+        note: SPA catch-all HTML shell
+      - path: /.well-known/api-catalog
+        status: 200
+        content_type: text/html
+        document: false
+        note: SPA catch-all HTML shell
+      - path: /.well-known/ai-plugin.json
+        status: 200
+        content_type: text/html
+        document: false
+        note: SPA catch-all HTML shell
+      - path: /.well-known/agent-card.json
+        status: 200
+        content_type: text/html
+        document: false
+        note: SPA catch-all HTML shell — NOT an agent card
+      - path: /.well-known/agent.json
+        status: 200
+        content_type: text/html
+        document: false
+        note: SPA catch-all HTML shell — NOT an agent card
+  - host: https://www.zoho.com
+    role: website-docs
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        content_type: text/plain
+        document: true
+        file: zoho-campaigns-security.txt
+        spec: RFC 9116
+        note: >-
+          Real corporate security.txt for zoho.com, operated by Zoho Corporation.
+          NOTE: the Expires field reads 2026-06-30T23:59:59.000Z, so the served
+          document is past its own expiry as of this probe.
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+  - host: https://accounts.zoho.com
+    role: oauth-authorization-server
+    note: >-
+      Zoho Accounts is the authorization server the Zoho Campaigns API v1.1
+      OAuth 2.0 flow uses (documented at
+      https://www.zoho.com/campaigns/help/developers/access-token.html).
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        content_type: application/json
+        document: true
+        file: zoho-campaigns-openid-configuration.json
+        spec: OpenID Connect Discovery 1.0
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+        note: RFC 8414 metadata not served; OIDC discovery carries the endpoints instead
+summary:
+  hosts_probed: 3
+  real_documents: 2
+  documents:
+    - zoho-campaigns-security.txt
+    - zoho-campaigns-openid-configuration.json

@@ -1,0 +1,47 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.zoho.com/campaigns/whats-new.html
+name: Zoho Campaigns changelog
+description: >-
+  Zoho publishes a dated "What's New in Zoho Campaigns" release feed, filterable
+  by year/month, function (Contact Management, Email Marketing, SMS Marketing,
+  Automation, Integrations, Compliance and Data Management, Customization or
+  Settings), data center (EU/JP/CN/IN/CA/AU/US/SA) and edition.
+url: https://www.zoho.com/campaigns/whats-new.html
+http_status: 200
+scheme: dated release feed, product-wide (not API-versioned)
+current_version: null
+entries: []
+entries_captured: 0
+capture_note: >-
+  The entry list is rendered client-side — the served HTML contains only the
+  filter chrome (Year and Month, Function, Data Center, Edition, sort controls)
+  and no release entries, so no dated entries could be transcribed without
+  executing JavaScript. The feed URL and its filter taxonomy are recorded
+  instead. This is an honest capture gap on our side of a page the provider
+  genuinely publishes, not an absent changelog.
+api_changelog:
+  published: false
+  note: >-
+    The What's New feed tracks product features. There is no API-specific
+    changelog or version history for the Campaigns API v1.1 or the Email API;
+    the Email API v1 -> v2 transition is visible only in the Postman collection.
+facets:
+  functions:
+    - Contact Management
+    - Email Marketing
+    - SMS Marketing
+    - Automation
+    - Integrations
+    - Compliance and Data Management
+    - Customization or Settings
+  data_centers: [EU, JP, CN, IN, CA, AU, US, SA]
+  editions:
+    - Forever Free
+    - Standard
+    - Professional
+    - Pay-as-you-go
+    - Agency Edition
+    - Zoho One
+    - Zoho CRM Plus
+    - Zoho Marketing Plus

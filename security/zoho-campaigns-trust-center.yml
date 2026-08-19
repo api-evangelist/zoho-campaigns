@@ -1,0 +1,54 @@
+generated: '2026-08-13'
+method: searched
+probe: true
+source: https://www.zoho.com/compliance.html
+name: Zoho compliance portfolio
+description: >-
+  Zoho Corporation does not operate a hosted trust portal at trust.zoho.com
+  (DNS does not resolve) or /trust. It publishes the equivalent surface as a
+  compliance portfolio page plus a security whitepaper, both of which name
+  certifications explicitly.
+url: https://www.zoho.com/compliance.html
+http_status: 200
+secondary:
+  - {url: 'https://www.zoho.com/security.html', http_status: 200, kind: security whitepaper}
+  - {url: 'https://www.zoho.com/security-faq.html', kind: security FAQ}
+  - {url: 'https://www.zoho.com/encryption.html', kind: encryption detail}
+  - {url: 'https://www.zoho.com/shared-responsibility.html', kind: shared responsibility model}
+probed_and_missing:
+  - {url: 'https://trust.zoho.com/', http_status: 0, note: DNS/connection failure}
+  - {url: 'https://www.zoho.com/trust/', http_status: 404}
+  - {url: 'https://www.zoho.com/compliance/', http_status: 404}
+  - {url: 'https://www.zoho.com/privacy/compliance/', http_status: 404}
+certifications:
+  - ISO/IEC 27001
+  - ISO/IEC 27017
+  - ISO/IEC 27018
+  - ISO/IEC 27701
+  - ISO/IEC 20000-1
+  - ISO 9001
+  - ISO 22301
+  - SOC 1 Type 2 (SSAE 18 / ISAE 3402)
+  - SOC 2 Type 2
+  - SOC 2 + HIPAA Type 2
+  - PCI DSS (SAQ-D)
+  - CSA STAR Self-Assessment
+  - Cyber Essentials Plus
+  - TX-RAMP
+  - ENS (Esquema Nacional de Seguridad)
+  - NCA Class B (Saudi Arabia)
+  - NHS DSPT v8
+  - GoBD
+  - 21 CFR Part 11
+  - EudraLex Annex 11
+  - WCAG 2.2 AA
+regulations: [GDPR, CCPA]
+frameworks_referenced: [OWASP, NIST]
+scope_caveat: >-
+  These are Zoho Corporation / Zoho cloud certifications. The compliance page
+  does not enumerate which certifications carry Zoho Campaigns specifically in
+  scope, so a buyer with a per-service scope requirement must request the audit
+  report to confirm.
+evidence:
+  - {source: 'https://www.zoho.com/compliance.html', keywords: [iso 27001, soc 2, pci dss, hipaa, gdpr, csa star]}
+  - {source: 'https://www.zoho.com/security.html', keywords: [owasp, nist, encryption, shared responsibility]}

@@ -1,0 +1,111 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.zoho.com/campaigns/help/developers/access-token.html
+docs: https://www.zoho.com/campaigns/help/developers/access-token.html
+note: >-
+  Transcribed verbatim from the Scope table on the Zoho Campaigns access-token
+  developer guide. Zoho Campaigns publishes no OpenAPI, so these scopes could
+  not be derived from a spec; every name below is printed on the docs page.
+  An incorrectly specified scope returns an INVALID_SCOPE error.
+schemes:
+  - name: ZohoOAuth
+    source: https://www.zoho.com/campaigns/help/developers/access-token.html
+    flows:
+      - flow: authorizationCode
+        authorizationUrl: https://accounts.zoho.com/oauth/v2/auth
+        tokenUrl: https://accounts.zoho.com/oauth/v2/token
+scopes:
+  - scope: ZohoCampaigns.campaign.CREATE
+    module: Campaigns
+    description: To create campaigns and merge tags
+    flows: [authorizationCode]
+  - scope: ZohoCampaigns.campaign.READ
+    module: Campaigns
+    description: To view a report or the details of a campaign
+    flows: [authorizationCode]
+  - scope: ZohoCampaigns.campaign.UPDATE
+    module: Campaigns
+    description: To update campaigns and coupons
+    flows: [authorizationCode]
+  - scope: ZohoCampaigns.campaign.DELETE
+    module: Campaigns
+    description: To delete a campaign
+    flows: [authorizationCode]
+  - scope: ZohoCampaigns.campaign.CREATE-UPDATE
+    module: Campaigns
+    description: To create, clone, and edit a campaign (CREATE, UPDATE)
+    composite_of: [ZohoCampaigns.campaign.CREATE, ZohoCampaigns.campaign.UPDATE]
+    flows: [authorizationCode]
+  - scope: ZohoCampaigns.campaign.WRITE
+    module: Campaigns
+    description: To create, modify, and delete campaigns (CREATE, UPDATE, DELETE)
+    composite_of:
+      - ZohoCampaigns.campaign.CREATE
+      - ZohoCampaigns.campaign.UPDATE
+      - ZohoCampaigns.campaign.DELETE
+    flows: [authorizationCode]
+  - scope: ZohoCampaigns.campaign.ALL
+    module: Campaigns
+    description: To view, create, modify, and delete campaigns (READ, CREATE, UPDATE, DELETE)
+    composite_of:
+      - ZohoCampaigns.campaign.READ
+      - ZohoCampaigns.campaign.CREATE
+      - ZohoCampaigns.campaign.UPDATE
+      - ZohoCampaigns.campaign.DELETE
+    flows: [authorizationCode]
+  - scope: ZohoCampaigns.contact.CREATE
+    module: Contacts
+    description: To create contacts or mailing lists
+    flows: [authorizationCode]
+  - scope: ZohoCampaigns.contact.READ
+    module: Contacts
+    description: To view details or a report of contacts or mailing lists
+    flows: [authorizationCode]
+  - scope: ZohoCampaigns.contact.UPDATE
+    module: Contacts
+    description: To update contacts or mailing lists
+    flows: [authorizationCode]
+  - scope: ZohoCampaigns.contact.DELETE
+    module: Contacts
+    description: To delete mailing lists
+    flows: [authorizationCode]
+  - scope: ZohoCampaigns.contact.CREATE-UPDATE
+    module: Contacts
+    description: To create and edit contacts or mailing lists (CREATE, UPDATE)
+    composite_of: [ZohoCampaigns.contact.CREATE, ZohoCampaigns.contact.UPDATE]
+    flows: [authorizationCode]
+  - scope: ZohoCampaigns.contact.WRITE
+    module: Contacts
+    description: To create, edit, and delete contacts or mailing lists (CREATE, UPDATE, DELETE)
+    composite_of:
+      - ZohoCampaigns.contact.CREATE
+      - ZohoCampaigns.contact.UPDATE
+      - ZohoCampaigns.contact.DELETE
+    flows: [authorizationCode]
+  - scope: ZohoCampaigns.contact.ALL
+    module: Contacts
+    description: To create, edit, view, and delete contacts or mailing lists (READ, CREATE, UPDATE, DELETE)
+    composite_of:
+      - ZohoCampaigns.contact.READ
+      - ZohoCampaigns.contact.CREATE
+      - ZohoCampaigns.contact.UPDATE
+      - ZohoCampaigns.contact.DELETE
+    flows: [authorizationCode]
+  - scope: ZohoCampaigns.emailapi.ALL
+    module: Email API
+    description: >-
+      The single scope selectable when creating a Zoho Campaigns Email API key
+      (the Zoho-zapikey credential used by Email API v2).
+    source: https://www.zoho.com/campaigns/help/emailapi/authentication.html
+    flows: []
+identity_scopes:
+  note: >-
+    The Zoho Accounts authorization server additionally advertises the standard
+    OIDC identity scopes in its discovery document.
+  source: well-known/zoho-campaigns-openid-configuration.json
+  scopes: [openid, email, profile, phone]
+summary:
+  scope_count: 15
+  modules: [Campaigns, Contacts, Email API]
+  granularity: module + CRUD verb, with CREATE-UPDATE / WRITE / ALL composites
+  error_on_bad_scope: INVALID_SCOPE

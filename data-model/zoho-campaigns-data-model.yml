@@ -1,0 +1,165 @@
+generated: '2026-08-13'
+method: derived
+source: postman/zoho-campaigns-email-api-collection.json
+also_from:
+  - https://www.zoho.com/campaigns/help/developers/campaign-management.html
+  - https://www.zoho.com/campaigns/help/developers/list-management.html
+  - https://www.zoho.com/campaigns/help/developers/topic-management.html
+  - https://www.zoho.com/campaigns/help/developers/workflow-management.html
+  - https://www.zoho.com/campaigns/help/emailapi/webhook-events.html
+name: Zoho Campaigns data model
+description: >-
+  Entity/relationship graph for the two Zoho Campaigns API surfaces. Derived
+  from the provider's own published Postman collection (real request bodies and
+  path shapes) and the developer-guide method tables — NOT from an OpenAPI,
+  because Zoho publishes none for this product. Field names below are quoted
+  from real published payloads; nothing is invented.
+identifiers:
+  style: opaque numeric strings, 16-19 digits, Zoho-org-prefixed
+  examples:
+    - 1093639000422588023   # transmission_id
+    - 214548000000287005    # webhook_id
+    - 1314909000000144100   # contact_id
+  note: >-
+    Zoho Campaigns v1.1 additionally uses two user-generated opaque handles that
+    are NOT numeric ids and must be fetched from the UI or a list call —
+    `listkey` (per mailing list, generated under Contacts > Manage Lists >
+    Setup) and `campaignkey`. An agent cannot construct either.
+surfaces:
+  - api: Zoho Campaigns API v1.1
+    base: https://campaigns.zoho.com/api/v1.1/
+    style: RPC-over-HTTP (method name in the path, parameters in the query string)
+    formats: [JSON, XML]
+    format_param: resfmt
+  - api: Zoho Campaigns Email API v2
+    base: https://campaigns.zoho.com/emailapi/v2/
+    style: resource-oriented REST (JSON bodies, path ids)
+    formats: [JSON]
+entities:
+  - name: Campaign
+    api: v1.1
+    key: campaignkey
+    operations:
+      [getcampaigndetails, createcampaign, sendcampaign, schedulecampaign,
+       clonecampaign, campaignreports, recentcampaigns, recentsentcampaigns,
+       getlastcampaignreport, getcampaignrecipientsdata, deletecampaign]
+  - name: MailingList
+    api: v1.1
+    key: listkey
+    operations:
+      [getmailinglists, getlistadvanceddetails, getlistcontacts,
+       updatelistdetails, deletemailinglist, totalcontacts, listsubscribe,
+       listunsubscribe, addlistandcontacts, addlistcontactsinbulk]
+  - name: Contact
+    api: v1.1
+    operations: [getlistcontacts, listsubscribe, listunsubscribe, contactdonotmail, totalcontacts]
+  - name: ContactField
+    api: v1.1
+    operations: [getallcontactfields, createcustomfield]
+  - name: Segment
+    api: v1.1
+    operations: [getsegmentdetails, getsegmentcontacts]
+  - name: MergeTag
+    api: v1.1
+    operations: [createmergetags]
+  - name: Coupon
+    api: v1.1
+    operations: [viewcoupondetails, changecouponstatus]
+  - name: Topic
+    api: v1.1
+    operations: [createtopics, gettopics]
+  - name: Product
+    api: v1.1
+    operations: [getproduct]
+  - name: Workflow
+    api: v1.1
+    operations: [getopencustomworkflows, triggercontacts]
+  - name: Transmission
+    api: emailapi/v2
+    path: /transmission
+    fields:
+      - {name: transmission_name, type: string}
+      - {name: transmission_id, type: string, role: identifier}
+      - {name: recipients, type: array<Recipient>}
+      - {name: recipient_list_id, type: string, role: reference}
+      - {name: content, type: Content}
+      - {name: options, type: object, fields: [schedule_at, tracking]}
+      - {name: injected_time, type: long}
+  - name: Content
+    api: emailapi/v2
+    embedded_in: Transmission
+    fields:
+      - {name: from, type: object, fields: [address, name]}
+      - {name: subject, type: string}
+      - {name: html, type: string}
+      - {name: text, type: string}
+      - {name: template_id, type: string, role: reference}
+    note: >-
+      Merge fields use the $[field|Default]$ syntax; an unsubscribe anchor is
+      marked with the data-zcea-unsubscribe="1" attribute.
+  - name: Recipient
+    api: emailapi/v2
+    fields:
+      - {name: address, type: string, role: identifier}
+      - {name: name, type: string}
+      - {name: additional_data, type: object}
+      - {name: merge_data, type: object}
+  - name: RecipientList
+    api: emailapi/v2
+    path: /recipients
+    fields: [name, description, recipients]
+  - name: SuppressionEntry
+    api: emailapi/v2
+    path: /recipients/suppression
+    fields: [address, additional_data]
+  - name: Template
+    api: emailapi/v2
+    path: /templates
+    fields: [template_name, content, content_type]
+  - name: SendingDomain
+    api: emailapi/v2
+    path: /settings/domain
+    fields: [domain, bounce_domain]
+  - name: TrackingDomain
+    api: emailapi/v2
+    path: /settings/domain/tracking
+    fields: [tracking_domain]
+  - name: Webhook
+    api: emailapi/v2
+    path: /settings/webhook
+    fields: [name, type, url, webhook_actions, custom_headers, custom_data, authorization]
+  - name: User
+    api: emailapi/v2
+    path: /settings/users
+    fields: [email_id, user_name]
+  - name: License
+    api: emailapi/v2
+    path: /license
+  - name: Event
+    api: emailapi/v2
+    path: /reports/event/{open|click|bounce|spam}
+    note: Also delivered via webhook; see asyncapi/zoho-campaigns-email-api-webhooks.yml
+relationships:
+  - {from: Campaign, to: MailingList, type: has_many, via: listkey}
+  - {from: MailingList, to: Contact, type: has_many, via: listkey}
+  - {from: MailingList, to: Segment, type: has_many}
+  - {from: Segment, to: Contact, type: has_many}
+  - {from: Contact, to: ContactField, type: has_many}
+  - {from: Campaign, to: Coupon, type: has_one}
+  - {from: Workflow, to: Contact, type: has_many, via: triggercontacts}
+  - {from: Transmission, to: Recipient, type: has_many, via: recipients}
+  - {from: Transmission, to: RecipientList, type: belongs_to, via: recipient_list_id}
+  - {from: Transmission, to: Template, type: belongs_to, via: content.template_id}
+  - {from: Transmission, to: SendingDomain, type: belongs_to, via: content.from.address}
+  - {from: Transmission, to: Event, type: has_many, via: transmission_id}
+  - {from: RecipientList, to: Recipient, type: has_many, via: recipients}
+  - {from: SuppressionEntry, to: Recipient, type: belongs_to, via: address}
+  - {from: Webhook, to: Event, type: has_many, via: webhook_actions}
+  - {from: SendingDomain, to: TrackingDomain, type: has_many}
+summary:
+  entity_count: 21
+  relationship_count: 16
+  derived_from_openapi: false
+  note: >-
+    No OpenAPI exists for this provider; the graph is grounded in the Postman
+    collection and the HTML developer guides instead.

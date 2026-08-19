@@ -1,0 +1,989 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+docs:
+  - https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+name: Zoho Campaigns error code catalog
+format: vendor-numeric
+note: >-
+  Zoho Campaigns does NOT use RFC 9457 problem+json. Both surfaces return a
+  vendor envelope carrying a numeric `code` plus a human `message`; the v1.1
+  Campaigns API wraps it in a <response uri=... version=...> element for
+  resfmt=XML and the equivalent JSON object for resfmt=JSON. The tables below
+  are transcribed verbatim from the two published error-code references.
+envelopes:
+  - api: Zoho Campaigns API v1.1
+    shape: >-
+      {"code": <numeric>, "message": "<text>", "uri": "/api/v1.1/<method>",
+      "version": "1", "status": "<success|error>"}
+    xml_root: response
+    code_field: code
+    message_field: message
+    observed: >-
+      Live unauthenticated GET of https://campaigns.zoho.com/api/v1.1/openapi.json
+      returned HTTP 200 with <response uri="/api/v1.1/openapi.json" version="1">
+      <code>1004</code> — "Wrong URL entered."
+    note: >-
+      The v1.1 API returns HTTP 200 with an in-body error code rather than a
+      4xx status, so agents MUST read the body `code`, not the HTTP status.
+  - api: Zoho Campaigns Email API v2
+    shape: '{"status": "<success|error>", "code": <6-digit>, "message": "<text>"}'
+    code_field: code
+    message_field: message
+    code_classes:
+      - prefix: '2xxxxx'
+        meaning: Success
+      - prefix: '4xxxxx'
+        meaning: Failure due to client side error
+      - prefix: '5xxxxx'
+        meaning: Failure due to server side error
+problems:
+  - code: '0'
+    message: "Success"
+    class: success
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '200'
+    message: "Success"
+    class: success
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '400'
+    message: "Bad Request"
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '401'
+    message: "Unauthorized"
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '404'
+    message: "We couldn't find the resource you're looking for. Please recheck the documentation and try again."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '500'
+    message: "Sorry, we've run into a problem. Please try again or contact support"
+    class: server
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '901'
+    message: "Account not active."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '902'
+    message: "No user account found."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '903'
+    message: "No mandatory fields in this URL."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '910'
+    message: "No fields found."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '914'
+    message: "You cannot add contacts as you've reached the maximum limit."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '916'
+    message: "Duplicate custom field found."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '991'
+    message: "No social campaign found."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '992'
+    message: "No result found."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '993'
+    message: "No contact found."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '994'
+    message: "No campaign found."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '995'
+    message: "No list found."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '996'
+    message: "Error in displaying search results."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '1001'
+    message: "Pattern doesn’t match."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '1002'
+    message: "Extra parameter found."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '1003'
+    message: "No mandatory fields in this URL."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '1004'
+    message: "Wrong URL entered."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '1005'
+    message: "Please enter correct data type format."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '1006'
+    message: "Multiple key entries are not supported."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '1007'
+    message: "Unauthorized key."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2001'
+    message: "Error in subscription. Please retry after sometime."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2002'
+    message: "List key is empty or invalid list key."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2003'
+    message: "Contact exists in this list."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2020'
+    message: "Invalid Coupon."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2021'
+    message: "Coupon already marked as 'Unused'/'Used' (Invalid change status)."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2101'
+    message: "Please retry after sometime."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2102'
+    message: "Listkey is empty or invalid."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2103'
+    message: "Contact does not exist."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2201'
+    message: "Error in displaying details. Please try after sometime."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2202'
+    message: "List ID is empty or Invalid ListId ."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2203'
+    message: "There are no contacts in this list."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2204'
+    message: "There are no details in this list."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2205'
+    message: "Duplicate list is found."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2206'
+    message: "List has been deleted."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2301'
+    message: "Error in update list."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2302'
+    message: "Duplicate list is found."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2401'
+    message: "List ID is empty or invalid listId."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2402'
+    message: "Error in displaying details.Please try after sometime."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2501'
+    message: "List ID is empty or invalid listId."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2502'
+    message: "Error in displaying contacts details. Please try after sometime."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2601'
+    message: "Error in displaying details. Please recent after sometime."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2602'
+    message: "There are no segments in this list."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2603'
+    message: "Error in fetching segments details."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2604'
+    message: "There are no contacts in this segments."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2701'
+    message: "Insufficient privilege to access your mailing list."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2704'
+    message: "Insufficient privilege to access other users' mailing list."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2706'
+    message: "There are no contacts in this segments."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2707'
+    message: "Error in displaying reports. Please retry after sometime."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '3001'
+    message: "No sent campaigns, yet (or) invalid campaign key."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '3023'
+    message: "Success"
+    class: success
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6001'
+    message: "Error in displaying reports. Please retry after sometime."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6002'
+    message: "No sent campaigns, yet (or) invalid campaign key."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6101'
+    message: "No campaign was sent."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6201'
+    message: "Success"
+    class: success
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6301'
+    message: "Invalid campiagn key."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6302'
+    message: "No contacts found."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6303'
+    message: "User agent unknown."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6304'
+    message: "Insufficient Privileges to perform this operation. Contact your admin."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6305'
+    message: "No link available."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6306'
+    message: "User agent unknown."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6307'
+    message: "No stats available."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6501'
+    message: "No contacts present for this criteria."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6502'
+    message: "Limit given is more than the maximum."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6503'
+    message: "Campaign is deleted."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6600'
+    message: "Campaign is sent."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6601'
+    message: "Insufficient privileges to perform this action. Please contact the org admin."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6603'
+    message: "Error in campaign sending. Coupon setup error."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6604'
+    message: "Error in campaign sending. Shopify setup error."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6605'
+    message: "Campaign status is changed."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6606'
+    message: "No lists selected for this campaign."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6607'
+    message: "No content for this campaign."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6608'
+    message: "Campaign is deleted."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6609'
+    message: "Error in campaign creation."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6610'
+    message: "Error in displaying reports. Please retry after sometime."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '6611'
+    message: "Content not reviewed."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '7001'
+    message: "Error in campaign creation."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '7002'
+    message: "Error in displaying reports. Please retry after sometime."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '7003'
+    message: "Error in updating campaign."
+    class: client
+    api: Zoho Campaigns API v1.1
+    source: https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - code: '2xxxxx'
+    message: "Success"
+    class: success
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '4xxxxx'
+    message: "Failure due to client side error."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '5xxxxx'
+    message: "Failure due to server side error."
+    class: server
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400001'
+    message: "Transmission name not provided."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400002'
+    message: "Recipient list not provided."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400003'
+    message: "Content details not provided."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400004'
+    message: "Sender details not provided."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400005'
+    message: "Sender address not provided."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400006'
+    message: "Subject not provided."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400007'
+    message: "Content body not provided."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400008'
+    message: "Invalid sender address."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400009'
+    message: "Sender domain not authenticated. Please authenticate your domain before sending."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400011'
+    message: "Recipient limit exceeded."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400012'
+    message: "CNAME not verified for bounce domain."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400013'
+    message: "None of the recipients are valid."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400015'
+    message: "Your account license expired."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400016'
+    message: "You do not have sufficient credits to perform this action."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400017'
+    message: "Schedule time is lesser than current time."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400018'
+    message: "Invalid transmission ID."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400019'
+    message: "The schedule time is overdue."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400020'
+    message: "Transmission has already been sent."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400021'
+    message: "The transmission has been canceled. Please create a new transmission."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400022'
+    message: "Schedule time not provided."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400023'
+    message: "Transmission has already been canceled."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400024'
+    message: "Invalid tracking option."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400025'
+    message: "Invalid Reply-to Address"
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400026'
+    message: "Your trial period has ended"
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400027'
+    message: "The transmission name exceeds the maximum allowed length."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400028'
+    message: "The subject exceeds the maximum allowed length."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400029'
+    message: "The from address exceeds the maximum allowed length."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400030'
+    message: "The from name exceeds the maximum allowed length."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400031'
+    message: "The reply-to address exceeds the maximum allowed length."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400032'
+    message: "The content exceeds the maximum allowed length."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400033'
+    message: "No attachments provided."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400034'
+    message: "One or more attachments missing name."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400035'
+    message: "One or more attachments have invalid name."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400036'
+    message: "Name too long for one or more attachments."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400037'
+    message: "One or more attachments missing data."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400038'
+    message: "One or more attachments missing file extension."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400039'
+    message: "One or more attachments have invalid type."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400040'
+    message: "Attachments limit exceeded. You cannot add more than 5 attachments."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400041'
+    message: "Total attachments size exceeds the allowed limit. You cannot add more than 5 MB."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400042'
+    message: "Attachments are not supported for Single Recipient Transmissions."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400043'
+    message: "The name of one or more recipients exceeds the maximum allowed length."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400101'
+    message: "Domain name not provided."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400102'
+    message: "Invalid domain name."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400103'
+    message: "Domain already present."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400104'
+    message: "No such domain configured."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400105'
+    message: "No domains configured yet."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400106'
+    message: "Domain already verified in another org."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400107'
+    message: "Domain verification failed due to missing public key in DNS."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400108'
+    message: "Invalid bounce domain."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400109'
+    message: "Bounce domain already exists."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400111'
+    message: "Invalid tracking domain."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400112'
+    message: "Tracking domain already present."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400113'
+    message: "Tracking domain not verified."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400114'
+    message: "Default tracking domain cannot be deleted. Please mark another domain as default and try deleting."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400115'
+    message: "Sender domain exceeds the maximum allowed length."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400116'
+    message: "Bounce domain exceeds the maximum allowed length."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400117'
+    message: "Tracking domain exceeds the maximum allowed length."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400118'
+    message: "No domains match the given criteria."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400204'
+    message: "Duplicate Webhook name."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400205'
+    message: "Invalid webhook ID."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400206'
+    message: "Invalid webhook name."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400207'
+    message: "Invalid URL."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400208'
+    message: "Invalid request type."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400209'
+    message: "Invalid webhook action."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400210'
+    message: "Invalid webhook custom data."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400211'
+    message: "Invalid webhook custom header."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400212'
+    message: "Invalid webhook auth type."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400301'
+    message: "Date range incorrect/not provided."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400302'
+    message: "Invalid index parameter(s)."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400303'
+    message: "Date range exceeds the limit of 90 days."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400304'
+    message: "Invalid contact email."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400305'
+    message: "Invalid bounce type."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400402'
+    message: "Suppression list not provided."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400404'
+    message: "Limit for a single API request has been exceeded."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400405'
+    message: "No contacts provided in suppression list."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400501'
+    message: "A recipient list with the same name already exists."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400502'
+    message: "Recipient list ID not provided."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400503'
+    message: "Recipient list name not provided."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400504'
+    message: "Recipients/contacts not provided."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400505'
+    message: "No such recipient list."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400506'
+    message: "Deletion of this list is not allowed, as it is mapped to a scheduled transmission."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400601'
+    message: "No users found."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400602'
+    message: "No such user present."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400603'
+    message: "User already exists."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400604'
+    message: "User already invited."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400605'
+    message: "User limit reached. You can't add users anymore."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400606'
+    message: "Invalid email address."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400701'
+    message: "Invalid template ID provided."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400702'
+    message: "Invalid template name provided."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400703'
+    message: "Invalid content type."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400704'
+    message: "Content not provided."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '400705'
+    message: "A template with the same name already exists."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '500701'
+    message: "Template was not deleted."
+    class: server
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '409901'
+    message: "The request is invalid or malformed. Please verify your request parameters and try again."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '409902'
+    message: "The requested endpoint is incorrect. Check the API URL and ensure it matches the documentation."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '409903'
+    message: "The OAuth token is invalid. Generate a new token and retry."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '409904'
+    message: "The API key is invalid. Verify the key or create a new one."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '409905'
+    message: "This endpoint does not support the HTTP method used. Check the API documentation for the correct method."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '409906'
+    message: "Your account does not have permission to perform this action."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '409907'
+    message: "Your OAuth token has expired. Refresh or regenerate the token and try again."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '409908'
+    message: "Include a valid OAuth token or API key in the Authorization header."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+  - code: '409909'
+    message: "You have exceeded the API rate limit. Please retry after some time."
+    class: client
+    api: Zoho Campaigns Email API
+    source: https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+summary:
+  problem_count: 188
+  v1_1_codes: 83
+  email_api_codes: 105
+  rfc9457: false
+  http_status_meaningful: false
+  note: >-
+    Error semantics are carried in the body code, not the HTTP status line.

@@ -1,0 +1,182 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.zoho.com/campaigns/help/emailapi/webhook-events.html
+spec_type: null
+spec_note: >-
+  Zoho publishes NO AsyncAPI document for Zoho Campaigns. Probed the docs host,
+  the API host and the GitHub org; nothing served. What the provider does
+  publish is a complete, documented webhook event catalog with per-event payload
+  attribute tables and sample payloads, plus a CRUD management API for the
+  webhook subscriptions themselves. That catalog is captured below verbatim from
+  the published pages — it is a real event surface, not a fabricated AsyncAPI.
+name: Zoho Campaigns Email API webhooks
+description: >-
+  Event webhooks for the Zoho Campaigns Email API. Delivery-lifecycle events for
+  a transmission (Zoho's term for a campaign send) are POSTed to a subscriber URL
+  configured through the Webhook Settings API.
+transport: HTTP POST
+docs:
+  events: https://www.zoho.com/campaigns/help/emailapi/webhook-events.html
+  management: https://www.zoho.com/campaigns/help/emailapi/webhooks.html
+  user_guide: https://help.zoho.com/portal/en/kb/campaigns/user-guide/settings/developer-space/articles/how-to-configure-webhooks
+management_api:
+  base: https://campaigns.zoho.com/emailapi/v2/settings/webhook
+  auth: 'Authorization: Zoho-zapikey <api_key>'
+  operations:
+    - name: Create a webhook
+      method: POST
+      path: /emailapi/v2/settings/webhook
+      docs: https://www.zoho.com/campaigns/help/emailapi/webhooks/create-webhook.html
+    - name: Modify a webhook
+      method: PUT
+      path: /emailapi/v2/settings/webhook/{webhook_id}
+      docs: https://www.zoho.com/campaigns/help/emailapi/webhooks/modify-webhook.html
+    - name: Get webhook details
+      method: GET
+      path: /emailapi/v2/settings/webhook/{webhook_id}
+      docs: https://www.zoho.com/campaigns/help/emailapi/webhooks/get-webhook.html
+    - name: Get all webhooks
+      method: GET
+      path: /emailapi/v2/settings/webhook
+      docs: https://www.zoho.com/campaigns/help/emailapi/webhooks/get-all-webhooks.html
+    - name: Delete a webhook
+      method: DELETE
+      path: /emailapi/v2/settings/webhook/{webhook_id}
+      docs: https://www.zoho.com/campaigns/help/emailapi/webhooks/delete-webhook.html
+  subscriber_auth_modes:
+    - none
+    - auth-token
+    - custom-header
+  note: >-
+    The provider's own Postman collection ships three Create-a-webhook variants
+    ("no auth", "auth token", and the default), which is how the three
+    subscriber authentication modes above are evidenced.
+envelope:
+  fields:
+    - {name: webhook_name, type: String, description: Name of the webhook you configured}
+    - {name: webhook_id, type: String, description: ID of the configured webhook}
+    - {name: action, type: String, description: Name of the event}
+    - {name: actionType, type: String, description: Type of action}
+    - {name: action_by, type: String, description: Indicates by whom the action was made}
+    - {name: data, type: JSON Array, description: An array of data about the events}
+  note: >-
+    Every event shares this outer envelope; the per-event attributes below appear
+    inside each element of `data[]`.
+events:
+  - name: Delivered
+    action: email_delivered
+    actionType: email_delivered
+    action_by: user
+    description: >-
+      A delivered event occurs when a mail successfully reaches the recipient's
+      mail server. This does not mean the email landed in the inbox or was read.
+    docs: https://www.zoho.com/campaigns/help/emailapi/events/delivered.html
+    data_fields:
+      - {name: action_time, type: Long, description: Time in UTC milliseconds at which the delivered event happened}
+      - {name: contact_id, type: Long, description: ID of the contact}
+      - {name: contact_email, type: String, description: Email address of the contact}
+      - {name: rcpt_additional_data, type: JSON Object, description: Additional recipient data supplied in the Transmission or Recipient List API}
+      - {name: transmission_name, type: String, description: The name you provided for the transmission}
+      - {name: injected_time, type: Long, description: Time in UTC milliseconds at which the transmission was created}
+      - {name: transmission_id, type: String, description: Unique system-generated transmission ID}
+      - {name: zuid, type: Long, description: ID of the user that sent the transmission API request}
+  - name: Bounce
+    action: bounce
+    description: >-
+      Called whenever one of your emails bounces. On a hard bounce the contact is
+      automatically added to the suppression list.
+    docs: https://www.zoho.com/campaigns/help/emailapi/events/bounce.html
+    data_fields:
+      - {name: bounce_code, type: String, description: Bounce code provided by the recipient email service provider}
+      - {name: bounce_type, type: String, description: hard bounce or soft bounce}
+      - {name: bounce_extended_code, type: String, description: Additional code indicating a specific bounce case}
+      - {name: bounce_reason, type: String, description: Reason for the bounce}
+      - {name: action_time, type: Long, description: Time in UTC milliseconds at which the bounce happened}
+      - {name: sending_ip, type: String, description: IP through which the mail was attempted}
+      - {name: contact_id, type: Long, description: ID of the contact}
+      - {name: contact_email, type: String, description: Email address of the contact}
+      - {name: rcpt_domain, type: String, description: Domain of the recipient}
+      - {name: rcpt_additional_data, type: JSON Object, description: Additional recipient data}
+      - {name: from, type: String, description: Sender address}
+      - {name: subject, type: String, description: Subject of the transmission}
+      - {name: message_id, type: String, description: Message ID of the bounced email}
+      - {name: transmission_name, type: String, description: Transmission name}
+      - {name: injected_time, type: Long, description: Transmission creation time}
+      - {name: transmission_id, type: String, description: Transmission ID}
+      - {name: zuid, type: Long, description: Sending user ID}
+    side_effect: Hard bounce adds the contact to the suppression list automatically
+  - name: Spam
+    action: spam
+    description: >-
+      Occurs when one or more recipients mark your email as spam. Some providers
+      only trigger it after a threshold is crossed.
+    docs: https://www.zoho.com/campaigns/help/emailapi/events/spam.html
+    data_fields:
+      - {name: action_time, type: Long, description: Time in UTC milliseconds at which the spam event happened}
+      - {name: sending_ip, type: String, description: IP through which the email was sent}
+      - {name: contact_id, type: Long, description: ID of the contact who marked the email as spam}
+      - {name: contact_email, type: String, description: Email address of that contact}
+      - {name: rcpt_domain, type: String, description: Domain of the recipient}
+      - {name: rcpt_additional_data, type: JSON Object, description: Additional recipient data}
+      - {name: from, type: String, description: Sender address}
+      - {name: subject, type: String, description: Subject of the transmission}
+      - {name: message_id, type: String, description: Message ID}
+      - {name: transmission_name, type: String, description: Transmission name}
+      - {name: injected_time, type: Long, description: Transmission creation time}
+      - {name: transmission_id, type: Long, description: Transmission ID}
+      - {name: zuid, type: Long, description: Sending user ID}
+  - name: Opens
+    action: email_open
+    actionType: email_open
+    action_by: contact
+    description: An open event occurs when a recipient opens your email.
+    docs: https://www.zoho.com/campaigns/help/emailapi/events/opens.html
+    data_fields:
+      - {name: action_time, type: Long, description: Time in UTC milliseconds at which the open happened}
+      - {name: contact_id, type: Long, description: ID of the contact who opened the email}
+      - {name: contact_email, type: String, description: Email address of that contact}
+      - {name: rcpt_additional_data, type: JSON Object, description: Additional recipient data}
+      - {name: transmission_name, type: String, description: Transmission name}
+      - {name: injected_time, type: Long, description: Transmission creation time}
+      - {name: transmission_id, type: String, description: Transmission ID}
+      - {name: zuid, type: Long, description: Sending user ID}
+  - name: Clicks
+    action: email_click
+    actionType: email_click
+    action_by: contact
+    description: A click event occurs when a recipient clicks any URL in your content.
+    docs: https://www.zoho.com/campaigns/help/emailapi/events/clicks.html
+    data_fields:
+      - {name: action_time, type: Long, description: Time in UTC milliseconds at which the click happened}
+      - {name: contact_id, type: Long, description: ID of the contact who clicked}
+      - {name: contact_email, type: String, description: Email address of that contact}
+      - {name: click_url, type: String, description: The link which was clicked by the contact}
+      - {name: rcpt_additional_data, type: JSON Object, description: Additional recipient data}
+      - {name: transmission_name, type: String, description: Transmission name}
+      - {name: injected_time, type: Long, description: Transmission creation time}
+      - {name: transmission_id, type: String, description: Transmission ID}
+      - {name: zuid, type: Long, description: Sending user ID}
+  - name: Unsubscribes
+    action: unsubscribed
+    actionType: doNotMail
+    action_by: contact
+    description: >-
+      Occurs when a recipient clicks the unsubscribe link in your content or the
+      unsubscribe button offered by their email service provider.
+    docs: https://www.zoho.com/campaigns/help/emailapi/events/unsubscribes.html
+    data_fields:
+      - {name: action_time, type: Long, description: Time in UTC milliseconds at which the unsubscribe happened}
+      - {name: contact_id, type: Long, description: ID of the contact who unsubscribed}
+      - {name: contact_email, type: String, description: Email address of that contact}
+      - {name: rcpt_additional_data, type: JSON Object, description: Additional recipient data}
+      - {name: transmission_name, type: String, description: Transmission name}
+      - {name: injected_time, type: Long, description: Transmission creation time}
+      - {name: transmission_id, type: String, description: Transmission ID}
+      - {name: zuid, type: Long, description: Sending user ID}
+summary:
+  event_count: 6
+  asyncapi_published: false
+  webhook_management_api: true
+  signature_verification: >-
+    Not documented. Zoho documents an optional auth token / custom header on the
+    subscription, but no HMAC request signature over the payload.

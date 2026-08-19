@@ -1,0 +1,71 @@
+generated: '2026-08-13'
+method: searched
+status: none
+source: https://www.zoho.com/mcp/services/zoho-services.html
+name: Zoho Campaigns MCP posture
+description: >-
+  Zoho operates a first-party MCP platform at zoho.com/mcp where a user creates
+  a per-account MCP server and receives a unique remote endpoint. Zoho Campaigns
+  is NOT one of the ~55 supported services — the supported-services page lists it
+  under "Upcoming services". No Zoho Campaigns MCP server exists to point at
+  today.
+deployment:
+  mode: none
+  endpoint: null
+  install: null
+  package: null
+  auth: unknown
+  verified: searched
+platform:
+  name: Zoho MCP
+  url: https://www.zoho.com/mcp/
+  supported_services_page: https://www.zoho.com/mcp/services/zoho-services.html
+  campaigns_status: upcoming
+  model: >-
+    Per-account server creation in the Zoho MCP console; the console issues a
+    unique remote MCP URL with an embedded key. Because the URL is provisioned
+    per tenant there is no published, catalog-able endpoint even for the
+    services that ARE supported.
+  auth: OAuth-based authorization; agents operate under the user's own permissions.
+  supported_services_sample:
+    - CRM
+    - Bigin
+    - Desk
+    - Books
+    - Billing
+    - Inventory
+    - Invoice
+    - Expense
+    - Mail
+    - Calendar
+    - Projects
+    - Recruit
+    - People
+    - Sign
+    - SalesIQ
+    - Social
+    - Survey
+    - Analytics
+    - Creator
+    - WorkDrive
+    - Cliq
+    - Payments
+  evidence: >-
+    Zoho's own product blog announced Zoho MCP servers for Mail, Calendar,
+    Bigin, Recruit, Inventory and Sign between June and July 2026 — none for
+    Campaigns. See blogs/ in this repo.
+tools: []
+candidate_note: >-
+  No candidate tool list is derived here. There is no OpenAPI for Zoho
+  Campaigns to derive one from, and inventing tool names for a server the
+  provider has not shipped would assert an agent surface that does not exist.
+  No `MCPServer` pointer is emitted in apis.yml for the same reason.
+what_an_agent_can_use_today:
+  - surface: Zoho Campaigns API v1.1
+    base: https://campaigns.zoho.com/api/v1.1/
+    auth: OAuth 2.0 (Zoho-oauthtoken)
+  - surface: Zoho Campaigns Email API v2
+    base: https://campaigns.zoho.com/emailapi/v2/
+    auth: API key (Zoho-zapikey)
+  - surface: Postman collection
+    file: postman/zoho-campaigns-email-api-collection.json

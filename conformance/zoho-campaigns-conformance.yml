@@ -1,0 +1,124 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.zoho.com/compliance.html
+docs:
+  - https://www.zoho.com/compliance.html
+  - https://www.zoho.com/security.html
+  - https://www.zoho.com/campaigns/help/developers/access-token.html
+name: Zoho Campaigns conformance
+description: >-
+  Which cross-cutting technical standards the Zoho Campaigns API surfaces
+  actually conform to, plus the corporate compliance certifications Zoho
+  publishes. Technical conformance is assessed against the published developer
+  guides and the provider's own Postman collection — there is no OpenAPI to
+  read securitySchemes or media types from.
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      Authorization-code flow against accounts.zoho.com, with refresh tokens and
+      module/CRUD scopes documented at
+      https://www.zoho.com/campaigns/help/developers/access-token.html
+  - id: oidc-discovery
+    conforms: true
+    evidence: >-
+      https://accounts.zoho.com/.well-known/openid-configuration returns 200
+      application/json (saved at well-known/zoho-campaigns-openid-configuration.json)
+  - id: rfc8414-oauth-authorization-server-metadata
+    conforms: false
+    evidence: /.well-known/oauth-authorization-server returns 404 on accounts.zoho.com
+  - id: rfc6750-bearer-token-usage
+    conforms: false
+    evidence: >-
+      Uses the non-standard `Zoho-oauthtoken` and `Zoho-zapikey` Authorization
+      schemes rather than `Bearer`
+  - id: openapi
+    conforms: false
+    evidence: >-
+      No OpenAPI/Swagger document served on campaigns.zoho.com or www.zoho.com;
+      /openapi.json, /openapi.yaml, /swagger.json, /api-docs all return the SPA
+      HTML shell
+  - id: asyncapi
+    conforms: false
+    evidence: No AsyncAPI document published for the documented webhook event surface
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: >-
+      Errors are a vendor numeric-code envelope, not application/problem+json —
+      see errors/zoho-campaigns-error-codes.yml
+  - id: rfc9116-security-txt
+    conforms: true
+    evidence: >-
+      https://www.zoho.com/.well-known/security.txt returns 200 text/plain with
+      Contact, Policy, Encryption, Acknowledgements, Canonical and Expires
+    deviation: >-
+      The served Expires value is 2026-06-30T23:59:59.000Z, i.e. the document is
+      past its own stated expiry as of the 2026-08-13 probe
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: No Sunset/Deprecation header or deprecation policy published
+  - id: rfc9116-well-known-api-catalog
+    conforms: false
+    evidence: /.well-known/api-catalog returns 404 on www.zoho.com
+  - id: json-api
+    conforms: false
+    evidence: Vendor JSON envelope; no JSON:API media type or document structure
+  - id: rest-uniform-interface
+    conforms: partial
+    evidence: >-
+      Email API v2 is resource-oriented with proper verbs and path ids;
+      Campaigns API v1.1 is RPC-over-HTTP (method name in the path, parameters
+      in the query string, HTTP 200 on error)
+  - id: mcp
+    conforms: false
+    evidence: >-
+      Zoho MCP lists Zoho Campaigns under "Upcoming services", not supported —
+      https://www.zoho.com/mcp/services/zoho-services.html
+  - id: a2a
+    conforms: false
+    evidence: >-
+      /.well-known/agent-card.json returns 404 on www.zoho.com and the SPA HTML
+      shell on campaigns.zoho.com; no agent card served
+  - id: postman-collection-v2.1
+    conforms: true
+    evidence: >-
+      First-party Email API collection published at
+      https://www.zoho.com/sites/zweb/images/campaigns/emailapisamplejson/email_api_30jun2025_latest_collection.json
+      (schema https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+compliance_program:
+  published: true
+  url: https://www.zoho.com/compliance.html
+  scope: >-
+    Corporate Zoho Corporation compliance portfolio covering the Zoho cloud
+    (Zoho Campaigns runs on it); the page does not publish a Campaigns-specific
+    scope statement per certification.
+  certifications:
+    - ISO/IEC 27001
+    - ISO/IEC 27017
+    - ISO/IEC 27018
+    - ISO/IEC 27701
+    - ISO/IEC 20000-1
+    - ISO 9001
+    - ISO 22301
+    - SOC 1 Type 2 (SSAE 18 / ISAE 3402)
+    - SOC 2 Type 2
+    - SOC 2 + HIPAA Type 2
+    - PCI DSS (SAQ-D)
+    - CSA STAR Self-Assessment
+    - Cyber Essentials Plus
+    - TX-RAMP
+    - ENS (Esquema Nacional de Seguridad)
+    - NCA Class B (Saudi Arabia)
+    - NHS DSPT v8
+    - GoBD
+    - 21 CFR Part 11
+    - EudraLex Annex 11
+    - WCAG 2.2 AA
+  regulations: [GDPR, CCPA]
+  email_specific:
+    - Certified Senders Alliance (CSA)
+    - Signal Spam
+summary:
+  standards_asserted: 16
+  conforming: 5
+  certifications_published: 21

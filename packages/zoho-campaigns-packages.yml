@@ -1,0 +1,77 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  Registry metadata endpoints (registry.npmjs.org, pypi.org, rubygems.org,
+  search.maven.org, azuresearch-usnc.nuget.org, packagist.org) plus the Zoho
+  Campaigns developer guides and the github.com/zoho organization.
+name: Zoho Campaigns client libraries
+description: >-
+  Zoho ships NO first-party client library for Zoho Campaigns in any public
+  package registry. Every package below is third-party. Zoho does publish
+  first-party SDKs for other products (@zohocrm/* on npm, zcatalyst-sdk-node),
+  which makes the Campaigns gap a deliberate omission rather than a
+  company-wide absence of SDK practice.
+official_sdk_count: 0
+packages:
+  - language: javascript
+    registry: npm
+    name: '@pipedream/zoho_campaigns'
+    url: https://www.npmjs.com/package/@pipedream/zoho_campaigns
+    install: npm install @pipedream/zoho_campaigns
+    official: false
+    vendor: Pipedream
+    version: 0.2.0
+    published: '2026-05-20'
+    note: iPaaS connector components, not a general-purpose Zoho Campaigns SDK.
+  - language: javascript
+    registry: npm
+    name: '@activepieces/piece-zoho-campaigns'
+    url: https://www.npmjs.com/package/@activepieces/piece-zoho-campaigns
+    install: npm install @activepieces/piece-zoho-campaigns
+    official: false
+    vendor: Activepieces
+    version: 0.1.9
+    published: '2026-08-04'
+    note: Automation-platform piece, not a general-purpose Zoho Campaigns SDK.
+  - language: ruby
+    registry: rubygems
+    name: zoho_campaigns
+    url: https://rubygems.org/gems/zoho_campaigns
+    install: gem install zoho_campaigns
+    official: false
+    vendor: Charles Max Wood (community)
+    version: 0.0.1
+    published: '2024-01-27'
+    note: >-
+      Single 0.0.1 release, ~660 downloads, no source_code_uri. Community
+      one-off; not maintained against the API.
+registries_checked:
+  - {registry: npm, query: 'zoho campaigns', first_party_hits: 0}
+  - {registry: pypi, query: 'zoho-campaigns / zohocampaigns / pyzohocampaigns', first_party_hits: 0, http_status: 404}
+  - {registry: rubygems, query: zoho_campaigns, first_party_hits: 0}
+  - {registry: maven-central, query: zohocampaigns, first_party_hits: 0, results: 0}
+  - {registry: nuget, query: 'zoho campaigns', first_party_hits: 0, results: 0}
+  - {registry: packagist, query: 'zoho/campaigns', first_party_hits: 0, http_status: 404}
+  - {registry: github, query: 'campaigns in github.com/zoho', first_party_hits: 0}
+alternative_distribution:
+  - kind: postman-collection
+    official: true
+    name: Email API collection
+    url: https://www.postman.com/zoho-emailapi-b1/zoho-campaigns-email-api/collection/lhb7bxz/email-api-collection
+    download: https://www.zoho.com/sites/zweb/images/campaigns/emailapisamplejson/email_api_30jun2025_latest_collection.json
+    file: postman/zoho-campaigns-email-api-collection.json
+    version: '30jun2025'
+    published: '2025-06-30'
+    note: >-
+      Version and date are read from the filename the provider publishes
+      (email_api_30jun2025_latest_collection.json) — the only currency signal
+      Zoho attaches to it. Postman Collection v2.1.0 schema, 90+ requests across
+      Email API v1 and v2.
+summary:
+  official: 0
+  third_party: 3
+  languages_with_official_sdk: []
+  note: >-
+    No `SDKs` pointer is emitted in apis.yml — the sdk_count checks read a
+    first-party client library and there is not one. The `Postman` pointer
+    carries the machine-readable distribution that does exist.

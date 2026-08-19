@@ -1,0 +1,67 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.zoho.com/campaigns/help/developers/access-token.html
+name: Zoho Campaigns API lifecycle
+description: >-
+  Versioning, deprecation, status and support posture for the Zoho Campaigns
+  API surfaces, read from the provider's published pages.
+versioning:
+  scheme: uri-path
+  current:
+    - {api: Zoho Campaigns API, version: v1.1, base: 'https://campaigns.zoho.com/api/v1.1/'}
+    - {api: Zoho Campaigns Email API, version: v2, base: 'https://campaigns.zoho.com/emailapi/v2/'}
+  previous:
+    - api: Zoho Campaigns API
+      version: v1.0
+      status: superseded
+      evidence: >-
+        "Zoho Campaigns has introduced the next version - version 1.1 - of its
+        API" — https://www.zoho.com/campaigns/help/developers/access-token.html
+      sunset_date: not published
+    - api: Zoho Campaigns Email API
+      version: v1
+      status: superseded
+      evidence: >-
+        The provider's Postman collection publishes "v1 - OAuth" alongside
+        "v2 - API key" with identical resource trees.
+      sunset_date: not published
+  docs: https://www.zoho.com/campaigns/help/developers/access-token.html
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    No deprecation or sunset policy is published for either Zoho Campaigns API
+    surface, and no RFC 8594 Sunset/Deprecation headers are documented. The
+    older v1.0 and Email API v1 remain reachable with no announced end date.
+    No `Deprecation` pointer is emitted in apis.yml — there is no policy to
+    point at.
+access_revocation:
+  note: >-
+    Zoho reserves the right to disable API access unilaterally: "Ensure that
+    APIs are not misused. It is within our rights to disable your APIs if we
+    suspect any misuse."
+  source: https://www.zoho.com/campaigns/help/emailapi/overview.html
+status_page:
+  url: https://status.zoho.com/
+  http_status: 200
+  scope: All Zoho services, including Zoho Campaigns
+  note: Corporate-wide status page; no Campaigns-only status feed is published.
+sla:
+  url: null
+  uptime_target: not published
+  note: No public SLA / uptime commitment is published for Zoho Campaigns.
+changelog:
+  url: https://www.zoho.com/campaigns/whats-new.html
+  see: changelog/zoho-campaigns-changelog.yml
+support:
+  email: support@zohocampaigns.com
+  community: https://help.zoho.com/portal/en/community/zoho-campaigns
+deprecated_operations: []
+summary:
+  versioning_documented: true
+  deprecation_policy: false
+  sunset_header: false
+  status_page: true
+  sla: false

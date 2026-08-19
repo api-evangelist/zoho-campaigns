@@ -1,27 +1,77 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.zoho.com/campaigns/help/developers/
+docs:
+  - https://www.zoho.com/campaigns/help/developers/
+  - https://www.zoho.com/campaigns/help/emailapi/error-codes.html
 name: Zoho Campaigns API Rate Limits
-description: Rate limiting policies for the Zoho Campaigns REST API v1.1
+description: Rate limiting policies for the Zoho Campaigns REST API v1.1 and the Email API v2
 url: https://www.zoho.com/campaigns/help/developers/
+limit_count: 3
 limits:
   - name: Standard API Rate Limit
     description: Maximum API calls allowed within a 5-minute window
     requests: 500
     window: 5 minutes
     scope: per account
+    api: Zoho Campaigns API v1.1
 
   - name: Lockout Period
     description: If the rate limit is exceeded, API access is suspended for 30 minutes
     lockout_duration: 30 minutes
+    scope: per account
+    api: Zoho Campaigns API v1.1
     note: Other Zoho APIs remain accessible unless their own lock period has been reached
+
+  - name: Email API report date range
+    description: Reporting endpoints reject a date range wider than 90 days
+    window: 90 days
+    scope: per request
+    api: Zoho Campaigns Email API v2
+    error_code: '400303'
+    error_message: Date range exceeds the limit of 90 days
+
+quota_limits:
+  - name: API keys per user
+    limit: 20
+    api: Zoho Campaigns Email API v2
+    source: https://www.zoho.com/campaigns/help/emailapi/authentication.html
+  - name: Attachments per transmission
+    limit: 5
+    api: Zoho Campaigns Email API v2
+    error_code: '400040'
+  - name: Total attachment size per transmission
+    limit: 5 MB
+    api: Zoho Campaigns Email API v2
+    error_code: '400041'
+  - name: Single-request suppression-list size
+    limit: not published
+    api: Zoho Campaigns Email API v2
+    error_code: '400404'
+    error_message: Limit for a single API request has been exceeded
+
+response_headers:
+  published: false
+  headers: []
+  retry_after: false
+  status_on_exhaustion: not published
+  note: >-
+    Zoho publishes the numeric limit but documents NO rate-limit response
+    headers (no X-RateLimit-*, no RateLimit-*, no Retry-After) and no status
+    code for exhaustion. Because the v1.1 API returns HTTP 200 with an in-body
+    numeric code even on failure, a client has no runtime budget signal at all
+    and can only detect the lockout after it has already been applied.
 
 token_limits:
   - name: Access Token Expiry
     description: OAuth 2.0 access tokens expire after one hour
     duration: 1 hour
     refresh: Use refresh token to obtain a new access token
+    source: https://www.zoho.com/campaigns/help/developers/access-token.html
 
 notes:
   - Rate limits apply per account across all API keys
-  - Exceeding the limit triggers a 30-minute cooldown for Zoho Campaigns API
-  - Other Zoho product APIs are not affected by Zoho Campaigns rate limit lockout
-  - Rate limits may vary based on plan tier; consult official docs for current values
+  - Exceeding the limit triggers a 30-minute cooldown for the Zoho Campaigns API
+  - Other Zoho product APIs are not affected by a Zoho Campaigns rate-limit lockout
+  - Rate limits may vary by plan tier; consult official docs for current values
   - API documentation reference: https://www.zoho.com/campaigns/help/developers/

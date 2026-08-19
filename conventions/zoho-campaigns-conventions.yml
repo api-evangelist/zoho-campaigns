@@ -1,0 +1,127 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.zoho.com/campaigns/help/developers/access-token.html
+docs:
+  - https://www.zoho.com/campaigns/help/developers/access-token.html
+  - https://www.zoho.com/campaigns/help/developers/error-codes.html
+  - https://www.zoho.com/campaigns/help/emailapi/authentication.html
+  - https://www.zoho.com/campaigns/help/emailapi/error-codes.html
+name: Zoho Campaigns API conventions
+description: >-
+  Cross-cutting request/response semantics for the two Zoho Campaigns API
+  surfaces, read from the published developer guides and the provider's own
+  Postman collection. Zoho publishes no OpenAPI, so nothing here is derived
+  from a spec.
+authentication:
+  v1_1:
+    style: OAuth 2.0 bearer, non-standard scheme name
+    header: 'Authorization: Zoho-oauthtoken <access_token>'
+    token_lifetime: 1 hour
+  email_api_v2:
+    style: API key in the Authorization header, non-standard scheme name
+    header: 'Authorization: Zoho-zapikey <api_key>'
+  note: >-
+    Neither surface uses the RFC 6750 `Bearer` scheme. Generic OAuth/HTTP client
+    tooling that hardcodes `Bearer` will fail against Zoho Campaigns.
+  see: authentication/zoho-campaigns-authentication.yml
+idempotency:
+  supported: false
+  header: null
+  note: >-
+    Zoho Campaigns documents NO idempotency key on either surface. Send-side
+    operations (sendcampaign, POST /emailapi/v2/transmission) are not safe to
+    blind-retry; the Email API instead offers a transmission id plus a
+    reschedule/cancel PUT to correct an in-flight send. Recorded as an honest
+    absence — no Idempotency pointer is emitted in apis.yml.
+request_encoding:
+  v1_1:
+    transport: HTTP GET/POST with parameters in the QUERY STRING, not a JSON body
+    encoding: >-
+      All JSON parameters in the request must be URL-encoded. The docs publish
+      per-language recipes — Java URLEncoder.encode(value, "UTF-8"),
+      Ruby URI::encode(value), PHP urlencode(value).
+    example: 'leadinfo={Contact Email:patricia@zylker.com} URL-encoded'
+  email_api_v2:
+    transport: JSON request bodies
+    content_type: application/json
+response_format:
+  v1_1:
+    negotiation: query parameter, not Accept header
+    parameter: resfmt
+    values: [JSON, XML]
+    default: XML
+    envelope: '<response uri="/api/v1.1/<method>" version="1"><code>…</code></response>'
+  email_api_v2:
+    format: JSON only
+    envelope: '{"status": …, "code": …, "message": …}'
+error_semantics:
+  http_status_meaningful: false
+  note: >-
+    The v1.1 API answers HTTP 200 even on failure and carries the real outcome
+    in the body `code`. Verified live: GET
+    https://campaigns.zoho.com/api/v1.1/openapi.json returned HTTP 200 with
+    <code>1004</code> ("Wrong URL entered"). Agents must branch on the body code.
+  catalog: errors/zoho-campaigns-error-codes.yml
+  code_space:
+    v1_1: 'small integers (0/200/400/401/404/500) plus vendor ranges 9xx, 1xxx-7xxx'
+    email_api: '6-digit; 2xxxxx success, 4xxxxx client error, 5xxxxx server error'
+pagination:
+  v1_1:
+    style: offset/range
+    params: [fromindex, range]
+    also: [sort]
+    example: '?sort=asc&fromindex=1&range=100'
+  email_api_v2:
+    style: bounded index window
+    params: [start_index, end_index]
+    example: '?start_index=1&end_index=100'
+  cursor_support: false
+  response_total_field: not documented
+filtering:
+  v1_1:
+    getlistadvanceddetails.filtertype: [sentcampaigns, scheduledcampaigns, recentcampaigns]
+  email_api_v2:
+    reports:
+      params: [from, to]
+      units: UTC epoch milliseconds
+      max_window: 90 days
+      error_on_exceed: '400303 — Date range exceeds the limit of 90 days'
+metadata_and_expansion:
+  sparse_fieldsets: false
+  expansion: false
+  custom_metadata:
+    email_api: >-
+      Recipient objects carry two free-form maps — `additional_data`
+      (echoed back on every webhook event as rcpt_additional_data) and
+      `merge_data` (bound into $[field|Default]$ merge tokens in content).
+    webhooks: >-
+      Webhook subscriptions carry `custom_data` and `custom_headers` maps that
+      are replayed on every delivery.
+    v1_1: Custom contact fields via createcustomfield; merge tags via createmergetags.
+request_tracing:
+  request_id_header: not documented
+  note: No correlation/request-id header is published on either surface.
+versioning:
+  scheme: uri-path
+  versions:
+    - {api: Zoho Campaigns API, version: v1.1, path: /api/v1.1/, status: current}
+    - {api: Zoho Campaigns Email API, version: v1, path: /emailapi/v1/, auth: OAuth 2.0, status: superseded-but-published}
+    - {api: Zoho Campaigns Email API, version: v2, path: /emailapi/v2/, auth: API key, status: current}
+  note: >-
+    The provider's own Postman collection ships v1 and v2 of the Email API side
+    by side with identical resource trees; the only difference is the auth
+    credential. No sunset date is published for v1.
+  see: lifecycle/zoho-campaigns-lifecycle.yml
+rate_limit_signaling:
+  documented_headers: none
+  note: >-
+    Zoho publishes the numeric limit (500 calls / 5 minutes, with a 30-minute
+    lockout on breach) but documents no X-RateLimit-* / RateLimit-* response
+    headers and no Retry-After. An agent gets no runtime budget signal.
+  see: rate-limits/zoho-campaigns-rate-limits.yml
+regionality:
+  note: >-
+    Endpoints are data-center-scoped by TLD (zoho.com / .eu / .in / .com.au /
+    .jp / .ca / .sa / .com.cn). A credential minted in one region does not work
+    against another region's host.
+  discovery: https://accounts.zoho.com/oauth/serverinfo

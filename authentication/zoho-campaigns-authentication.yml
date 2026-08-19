@@ -1,0 +1,91 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.zoho.com/campaigns/help/developers/access-token.html
+docs:
+  - https://www.zoho.com/campaigns/help/developers/access-token.html
+  - https://www.zoho.com/campaigns/help/emailapi/authentication.html
+note: >-
+  Derived by hand from the provider's published authentication documentation.
+  Zoho Campaigns publishes no OpenAPI, so there are no securitySchemes to derive
+  from; every value below is quoted from the two developer-guide pages named in
+  docs[], plus the OIDC discovery document served by the authorization server at
+  accounts.zoho.com.
+summary:
+  types:
+    - oauth2
+    - apiKey
+  api_key_in:
+    - header
+  oauth2_flows:
+    - authorizationCode
+  authorization_server: https://accounts.zoho.com
+schemes:
+  - name: ZohoOAuth
+    api: Zoho Campaigns API v1.1
+    type: oauth2
+    flow: authorizationCode
+    authorizationUrl: https://accounts.zoho.com/oauth/v2/auth
+    tokenUrl: https://accounts.zoho.com/oauth/v2/token
+    revocationUrl: https://accounts.zoho.com/oauth/v2/token/revoke
+    introspectionUrl: https://accounts.zoho.com/oauth/v2/introspect
+    header: 'Authorization: Zoho-oauthtoken <access_token>'
+    access_token_lifetime: 1 hour
+    refresh: >-
+      A refresh token is issued alongside the access token; use it against the
+      Zoho Accounts token endpoint to mint a new access token when the current
+      one expires.
+    prerequisites:
+      - A client registered in Zoho Accounts (client id + client secret)
+      - Requested scopes granted by the Zoho Campaigns account owner
+    scopes_reference: scopes/zoho-campaigns-scopes.yml
+    source: https://www.zoho.com/campaigns/help/developers/access-token.html
+  - name: ZohoAPIKey
+    api: Zoho Campaigns Email API v2
+    type: apiKey
+    in: header
+    parameter_name: Authorization
+    value_format: 'Zoho-zapikey <api_key>'
+    scope: ZohoCampaigns.emailapi.ALL
+    key_limit: Maximum of 20 API keys per user
+    generation: >-
+      Zoho Campaigns console -> API Keys -> Create API Key; name the key and
+      select the scope.
+    source: https://www.zoho.com/campaigns/help/emailapi/authentication.html
+  - name: ZohoOAuthEmailAPI
+    api: Zoho Campaigns Email API v1
+    type: oauth2
+    flow: authorizationCode
+    note: >-
+      The Email API v1 surface in the provider's own Postman collection is
+      grouped as "v1 - OAuth" and authenticates with the same Zoho Accounts
+      OAuth 2.0 tokens; v2 replaced it with the Zoho-zapikey API key above.
+    source: postman/zoho-campaigns-email-api-collection.json
+authorization_server:
+  issuer: https://accounts.zoho.com
+  discovery: https://accounts.zoho.com/.well-known/openid-configuration
+  document: well-known/zoho-campaigns-openid-configuration.json
+  grant_types_supported:
+    - authorization_code
+    - implicit
+    - refresh_token
+    - 'urn:ietf:params:oauth:grant-type:device_code'
+    - 'urn:ietf:params:oauth:grant-type:jwt-bearer'
+  response_types_supported:
+    - code
+    - token
+  openid_scopes_supported:
+    - openid
+    - email
+    - profile
+    - phone
+  note: >-
+    The openid-configuration scopes_supported list carries only the OIDC
+    identity scopes. The Zoho Campaigns product scopes (ZohoCampaigns.*) are
+    published on the developer-guide page, not in discovery metadata.
+data_centers:
+  note: >-
+    Zoho operates regional data centers (US, EU, IN, AU, JP, CA, CN, SA). Both
+    the accounts host and the campaigns host carry a region-specific TLD in
+    non-US regions (e.g. accounts.zoho.eu / campaigns.zoho.eu). The values above
+    are the US (.com) endpoints.
+  reference: https://accounts.zoho.com/oauth/serverinfo
