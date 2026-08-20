@@ -40,6 +40,17 @@ tags:
   - Campaign Analytics
   - Marketing Automation
   - Transactional Email
+  - Webhook
+tags_raw:
+  - Email Marketing
+  - Campaigns
+  - Mailing Lists
+  - Subscribers
+  - Email Templates
+  - A/B Testing
+  - Campaign Analytics
+  - Marketing Automation
+  - Transactional Email
   - Webhooks
 apis:
   - name: Zoho Campaigns API
@@ -82,6 +93,14 @@ apis:
     humanURL: https://www.zoho.com/campaigns/help/emailapi/overview.html
     baseURL: https://campaigns.zoho.com/emailapi/v2/
     tags:
+      - Transactional Email
+      - Email Delivery
+      - Templates
+      - Suppression Lists
+      - Sending Domains
+      - Webhook
+      - Deliverability Reports
+    tags_raw:
       - Transactional Email
       - Email Delivery
       - Templates
