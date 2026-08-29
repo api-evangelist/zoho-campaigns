@@ -13,6 +13,17 @@ description: >-
   authenticated with an API key. Zoho publishes no OpenAPI for either surface;
   the machine-readable contract it does publish is a first-party Postman
   collection for the Email API.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: unknown
