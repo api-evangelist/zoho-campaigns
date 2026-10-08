@@ -93,3 +93,41 @@ notes:
   - Pay-as-you-go credits available for Email API access
   - Dedicated IP available as add-on
   - SMS marketing available as add-on with credit-based pricing
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - subscription
+  units: []
+  plans:
+  - name: Forever Free
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Standard
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Professional
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods: []
+  - name: Agency
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
+  - name: Pay-as-you-go
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods: []
