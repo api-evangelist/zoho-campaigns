@@ -94,8 +94,26 @@ edges:
     builder: Fivetran
   detected_by: sweep-data-integration.py
   first_seen: '2026-10-18'
+- partner_name: Google Workspace (own)
+  partner: google-workspace
+  partner_match: mirror
+  mirror_match: domain+name-among-holders
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://workspace.google.com/marketplace/app/zoho_campaigns/240552415845
+  mirror_of: google-workspace/integrations/google-workspace-integration-edges.yml
+  apps:
+  - Zoho Campaigns
+  listing_count: 1
+  detected: '2026-10-18'
+  detected_by: mirror-platform-listings.py
+  category: Google Workspace app
 method: searched
 checked:
+- google-workspace/integrations/google-workspace-integration-edges.yml
 - https://fivetran.com/docs-sitemap.xml
 - https://fivetran.com/docs/connectors/partner-built-program
 - https://github.com/PipedreamHQ/pipedream/tree/94800dd6de6640b942c65ea7ee655f71ac56d438/components/
