@@ -91,7 +91,7 @@
     - connectors/applications/zoho-campaigns
     vendor_link: https://www.zoho.com/campaigns/
     builder: Fivetran
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
 - slug: zoho-campaigns-google-workspace-own
   label: Google Workspace (own)
